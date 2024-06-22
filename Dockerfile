@@ -2,16 +2,19 @@
 FROM node:21-alpine
 
 # Create app directory
-WORKDIR ./
+WORKDIR /app
 
-# Bundle app source
-COPY . .
+# Copy package.json and yarn.lock (if using Yarn) to the working directory
+COPY package*.json ./
 
+# Install app dependencies
 RUN npm i
 
-RUN npm run build
+# Bundle app source code
+COPY . .
 
-EXPOSE 8081
+# Build the NestJS application (assuming you have a build script)
+RUN npm run build
 
 # Start the server using the production build
 CMD [ "npm", "start" ]
