@@ -7,7 +7,7 @@ WORKDIR ./
 # Bundle app source
 COPY . .
 
-RUN npm install
+RUN npm i
 
 RUN npm run build
 
